@@ -1,6 +1,9 @@
 import uuid
+import random
 
-from .api import start_new_game, fetch_characters, post_item
+from .api import (
+    start_new_game, fetch_characters, post_item, get_item, patch_item
+)
 
 def start_game():
     print("Starting game...")
@@ -28,3 +31,20 @@ def add_user_character(name: str, character_id):
         print(f"\r\ncharacter '{req['value']['character']}' added to player '{name}'")
         return name
     return None
+
+def starting_positions():
+    req, _ = get_item("user/")
+    for player in req:
+        # print(f"player: {player}")
+        # print(f"keys: {req[player].keys()}")
+        position = random.randint(0, 29)
+        data = {
+            "name": player,
+            "roll_value": req[player]['current_roll'],
+            "move_direction": "cw",
+            "position": position
+        }
+        p_req, code = patch_item("user/start_position", data)
+        if code != 201:
+            print(f"{p_req}")
+    print(f"\r\nPlayer positions loaded.\r\n")

@@ -1,6 +1,6 @@
 from libs.api import ping_server
 from libs.start_game import (
-    start_game, list_characters, add_user_character
+    start_game, list_characters, add_user_character, starting_positions
 )
 
 ping_server()
@@ -18,3 +18,6 @@ for _ in range(3):
     user_name = add_user_character(user_name, character_id)
     players.append(user_name)
 
+print("\r\n*******************\r\n")
+
+starting_positions()

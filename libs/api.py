@@ -19,3 +19,11 @@ def fetch_characters():
 def post_item(endpoint, content: dict):
     req = requests.post(BASE_URL+f"{endpoint}", json=content)
     return req.json(), req.status_code
+
+def patch_item(endpoint, content: dict):
+    req = requests.patch(BASE_URL+f"{endpoint}", json=content)
+    return req.json(), req.status_code
+
+def get_item(endpoint):
+    req = requests.get(BASE_URL+f"{endpoint}")
+    return req.json(), req.status_code
