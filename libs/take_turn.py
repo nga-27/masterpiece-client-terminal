@@ -31,16 +31,17 @@ def process_position(position, player):
     print(position)
     types, code = get_item("board/types")
     board_types = types[0]['value']
-    print(f"{board_types}\r\n")
+    print(f"{board_types}")
 
     if position['type'] == 'buy_from_bank':
         res, code = get_item('paintings/next')
         print(res)
         buy_from_bank(player, "painting", position['value'])
+    print("")
 
 
 def buy_from_bank(player, painting_obj, amount):
-    print("BUY FROM BANK")
+    print("BUY FROM BANK\r\n")
     data = {
         "name": player,
         "painting": painting_obj,
