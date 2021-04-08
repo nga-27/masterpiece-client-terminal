@@ -21,4 +21,35 @@ def take_turn(player: str, computer=False):
         "position": 0
     }
     new_position, _ = patch_item("user/update_position", data)
-    print(new_position)
+    print(f"{new_position['value']['name']} rolls a {dice_roll}")
+    board, _ = get_item("board/positions")
+    print(f"Board :: {board[0]['value'][player]['position_name']}")
+    process_position(board[0]['value'][player], player)
+
+
+def process_position(position, player):
+    print(position)
+    types, code = get_item("board/types")
+    board_types = types[0]['value']
+    print(f"{board_types}\r\n")
+
+    if position['type'] == 'buy_from_bank':
+        res, code = get_item('paintings/next')
+        print(res)
+        buy_from_bank(player, "painting", position['value'])
+
+
+def buy_from_bank(player, painting_obj, amount):
+    print("BUY FROM BANK")
+    data = {
+        "name": player,
+        "painting": painting_obj,
+        "character": "",
+        "character_id": "",
+        "current_position": 0,
+        "current_roll": 0,
+        "paintings": painting_obj,
+        "current_cash": -1*amount
+    }
+
+

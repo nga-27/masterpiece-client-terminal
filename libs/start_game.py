@@ -48,3 +48,7 @@ def starting_positions():
         if code != 201:
             print(f"{p_req}")
     print(f"\r\nPlayer positions loaded.\r\n")
+    req, _ = get_item("user/")
+    for player in req:
+        print(f"{req[player]['name']} --> start on position: {req[player]['current_position']} ")
+    print("\r\n")

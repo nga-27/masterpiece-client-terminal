@@ -46,6 +46,7 @@ print("\r\n*******************\r\n")
 
 starting_positions()
 
+print("\r\n***** ROUND 1 *****\r\n")
 for player in players:
     take_turn(player['name'], computer=player['computer'])
     time.sleep(2)
