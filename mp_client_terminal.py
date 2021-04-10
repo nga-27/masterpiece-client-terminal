@@ -1,7 +1,7 @@
 import time
 
 from libs.read_fixture import read_fixture
-from libs.api import ping_server
+from libs.api import ping_server, get_item
 from libs.start_game import (
     start_game, list_characters, add_user_character, starting_positions
 )
@@ -46,7 +46,20 @@ print("\r\n*******************\r\n")
 
 starting_positions()
 
-print("\r\n***** ROUND 1 *****\r\n")
+for round_num in range(GAME_CONTENT['rounds']):
+    print(f"\r\n***** ROUND {round_num+1} *****\r\n")
+    for player in players:
+        take_turn(player['name'], computer=player['computer'])
+        time.sleep(2)
+
+
+print("\r\n*******************\r\n")
+print("Final scores!")
+scores = []
+users, _ = get_item('user/')
 for player in players:
-    take_turn(player['name'], computer=player['computer'])
-    time.sleep(2)
+    amount = users[player['name']]['current_cash']
+    for painting in users[player['name']]['paintings']:
+        amount += painting['actual_value']
+    scores.append(amount)
+    print(f"{player['name'].upper()} == ${amount} :: cash = {users[player['name']]['current_cash']}")

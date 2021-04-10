@@ -12,5 +12,6 @@
             "name": "steve",
             "character_id": "c2"
         }
-    }
+    },
+    "rounds": 10
 }
