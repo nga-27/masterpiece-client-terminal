@@ -1,0 +1,17 @@
+{
+    "players": {
+        "nick": {
+            "name": "nick",
+            "character_id": "c0"
+        },
+        "jill": {
+            "name": "jill",
+            "character_id": "c1"
+        },
+        "steve": {
+            "name": "steve",
+            "character_id": "c2"
+        }
+    },
+    "rounds": 10
+}
